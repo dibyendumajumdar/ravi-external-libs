@@ -1,2 +1,0 @@
-# ravi-dist
-Ravi Distributions
