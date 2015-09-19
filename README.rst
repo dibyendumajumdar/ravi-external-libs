@@ -57,14 +57,14 @@ How Reference LAPACK was built on Win64
 ---------------------------------------
 You will need mingw64. I installed SEH / win32 threads option - using the mingw-64 installer `downloaded from sourceforge <http://sourceforge.net/projects/mingw-w64/files/latest/download?source=files>`_. 
 
-The above distrbution of MinGW is needed for Fortran compiler and library dependencies of LAPACK; not all distributions include the Fortran compilers.
+The above distribution of MinGW is needed for the GNU Fortran compiler and library dependencies of LAPACK; not all distributions include the Fortran compilers.
 
 To build LAPACK on Win64 platforms, follow these steps.
 I used Visual Studio 2013, but VS2015 should be fine as well. Make sure that the bin folder of MinGW and ``cmake`` are in the ``PATH``. 
 
 1. Open command prompt
-2. Run `cmake-gui`.
-3. Point CMake to your LAPCAK folder as the source code folder 
+2. Run ``cmake-gui``.
+3. Point CMake to your LAPACK folder as the source code folder 
 4. Point to a new folder where you want the build to be (not the same is better) 
 5. Click configure, check the install path if you want to have the libraries and includes in a particular location. I set this to ``c:\lapack``
 6. Choose MinGW Makefiles. 
