@@ -52,3 +52,45 @@ Run CMake as follows::
 At present no build is needed. The CMake script merely checks for pre-requisites such as BLAS and LAPACK libraries.
 
 
+
+How Reference LAPACK was built on Win64
+---------------------------------------
+You will need mingw64. I installed SEH / win32 threads option - using the mingw-64 installer downloaded from sourceforge.
+http://sourceforge.net/projects/mingw-w64/files/latest/download?source=files 
+
+MinGW is needed for Fortran library dependencies of lapack.
+
+To build LAPACK on Win64 platforms, follow these steps.
+I used Visual Studio 2013 Community Edition. Make sure that ``c:/mingw/bin`` and ``cmake`` are in the ``PATH``.
+
+1. Open command prompt
+2. Run cmake-gui.
+3. Point cmake to your lapack folder as the source code folder 
+4. Point to a new folder where you want the build to be (not the same is better) 
+5. Click configure, check the install path if you want to have the libraries and includes in a particular location. I set this to ``c:\lapack``
+6. Choose MinGW Makefiles. 
+7. Click "Specify native compilers" and indicate the path to the Mingw compilers. On my machine, it is ``C:/MinGW/bin/gfortran.exe``
+8. Set the ``BUILD_SHARED_LIBS`` option to ON.
+9. Set the ``CMAKE_GNUtoMS`` option to ON.
+10. Click again configure - everything will becomes white
+11. You may see a variable ``VCVARSAMD64`` which is not properly set. Edit this variable as follows::
+    
+      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\vcvarsx86_amd64.bat
+
+    Note on win-32 machine this would be a different file.
+12. Click generate, that will create the mingw build.
+13. Close CMAKE
+14. Type ``C:/MinGW/bin/mingw32-make.exe``
+15. Your libs will be in the lib folder, the dlls are in the bin folder. Copy the *.lib and *.dll files to ``c:\libs`` folder.
+
+Generate the VS solution and project files as follows::
+
+  cd dylan/dylancore/build
+
+On 64-bit Windows, run::
+
+  cmake -G "Visual Studio 12 Win64" ..
+
+Notes regarding OpenBLAS 
+------------------------
+The supplied OpenBLAS distribution was obtained from OpenBLAS `sourceforge site <https://sourceforge.net/projects/openblas/files/>`_. The supplied version is `0.2.14 Win64 int32 <http://sourceforge.net/projects/openblas/files/v0.2.14/OpenBLAS-v0.2.14-Win64-int32.zip/download>`_. This version uses 32-bit integers as BLASINT type which is needed for compatibility with the reference LAPACK build.
