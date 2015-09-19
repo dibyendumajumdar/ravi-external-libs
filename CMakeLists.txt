@@ -9,3 +9,7 @@ if (WIN32)
   install(DIRECTORY bin/win64/
         DESTINATION bin)
 endif(WIN32)
+
+if (UNIX)
+  find_package(LAPACK REQUIRED)
+endif(UNIX)

@@ -14,8 +14,19 @@ Run CMake as follows::
 
 Then open the solution in Visual Studio 2015 and build the 'INSTALL' target. 
 
-Installing on Linux
--------------------
+Installing on Ubuntu
+--------------------
+
+For information on how to install and configure BLAS and LAPACK refer to information at `DebianScience Wiki  <http://wiki.debian.org/DebianScience/LinearAlgebraLibraries>`_.
+
+Install OpenBLAS as follows::
+
+  sudo apt-get install libopenblas-dev
+
+Then configure as follows::
+
+  sudo update-alternatives --config libblas.so.3
+  sudo update-alternatives --config liblapack.so.3
 
 Run CMake as follows::
 
@@ -24,3 +35,5 @@ Run CMake as follows::
   cmake -DCMAKE_INSTALL_PREFIX=$HOME/ravi ..
 
 This will install the files under ``$HOME/ravi`` folder.
+
+
