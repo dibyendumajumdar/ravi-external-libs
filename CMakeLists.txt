@@ -13,3 +13,11 @@ endif(WIN32)
 if (UNIX)
   find_package(LAPACK REQUIRED)
 endif(UNIX)
+
+if (APPLE)
+  install(DIRECTORY bin/osx/
+  	      DESTINATION bin)
+elseif (UNIX)
+  install(DIRECTORY bin/linux/
+  	      DESTINATION bin)
+endif()
