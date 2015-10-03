@@ -9,6 +9,7 @@ A number of pre-built 64-bit DLLs are supplied for Windows - these include:
 
 * BLAS (both reference and OpenBLAS implementations)
 * LAPACK
+* GNU Scientific Library (GSL)
 
 Run CMake as follows::
 
@@ -26,8 +27,9 @@ For information on how to install and configure BLAS and LAPACK refer to informa
 Install OpenBLAS as follows::
 
   sudo apt-get install libopenblas-dev
+  sudo apt-get install libgsl0-dev
 
-Then configure as follows::
+Configure OpenBLAS to be the default BLAS as follows::
 
   sudo update-alternatives --config libblas.so.3
   sudo update-alternatives --config liblapack.so.3
@@ -37,8 +39,10 @@ Run CMake as follows::
   mkdir build
   cd build
   cmake -DCMAKE_INSTALL_PREFIX=$HOME/ravi ..
+  make install
 
-At present no build is needed. The CMake script merely checks for pre-requisites such as BLAS and LAPACK libraries.
+The CMake script checks for pre-requisites such as BLAS, LAPACK and GSL libraries.
+The ``make install`` instruction copies scripts to ``$HOME/ravi/bin``.
 
 Installing on Mac OSX Yosemite
 ------------------------------
@@ -50,7 +54,6 @@ Run CMake as follows::
   cmake -DCMAKE_INSTALL_PREFIX=$HOME/ravi ..
 
 At present no build is needed. The CMake script merely checks for pre-requisites such as BLAS and LAPACK libraries.
-
 
 
 How Reference LAPACK was built on Win64
