@@ -10,6 +10,8 @@ if (WIN32)
         DESTINATION include/gsl)  
   install(DIRECTORY bin/win64/
         DESTINATION bin)
+  install(DIRECTORY lib/win64/
+        DESTINATION lib)
 endif(WIN32)
 
 if (UNIX)
