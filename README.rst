@@ -60,10 +60,10 @@ How Reference LAPACK was built on Win64
 ---------------------------------------
 You will need mingw64. I installed SEH / win32 threads option - using the mingw-64 installer `downloaded from sourceforge <http://sourceforge.net/projects/mingw-w64/files/latest/download?source=files>`_. 
 
-The above distribution of MinGW is needed for the GNU Fortran compiler and library dependencies of LAPACK; not all distributions include the Fortran compilers.
+The above distribution of MinGW is needed for the GNU Fortran compiler and library dependencies of LAPACK; not all distributions include the Fortran compilers. I also tried building with msys2 GNU toolchain but faced problems getting CMake to work correctly with that version.
 
 To build LAPACK on Win64 platforms, follow these steps.
-I used Visual Studio 2013, but VS2015 should be fine as well. Make sure that the bin folder of MinGW and ``cmake`` are in the ``PATH``. 
+I used Visual Studio 2015. Make sure that the bin folder of MinGW and ``cmake`` are in the ``PATH``. 
 
 1. Open command prompt
 2. Run ``cmake-gui``.
@@ -71,21 +71,21 @@ I used Visual Studio 2013, but VS2015 should be fine as well. Make sure that the
 4. Point to a new folder where you want the build to be (not the same is better) 
 5. Click configure, check the install path if you want to have the libraries and includes in a particular location. I set this to ``c:\lapack``
 6. Choose MinGW Makefiles. 
-7. Click "Specify native compilers" and indicate the path to the Mingw compilers. On my machine, it was ``C:/MinGW/bin/gfortran.exe``
+7. Click "Specify native compilers" and indicate the path to the Mingw compilers. On my machine, it was ``C:\mingw-w64\mingw64\bin\gfortran.exe``
 8. Set the ``BUILD_SHARED_LIBS`` option to ON.
 9. Set the ``CMAKE_GNUtoMS`` option to ON.
-10. Click again configure - everything will becomes white
-11. You may see a variable ``VCVARSAMD64`` which is not properly set. Edit this variable as follows::
-    
-      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\vcvarsx86_amd64.bat
-
-    Note on for VS2015 this could be a different file.
+10. I also switched off options to build complex functions and the tests.
+11. Click again configure - everything will becomes white
 12. Click generate; this will create the mingw build.
 13. Close `cmake-gui`.
-14. Run ``C:/MinGW/bin/mingw32-make.exe``.
-15. Your libs will be in the lib folder, the dlls will in the bin folder. Copy the *.lib and *.dll files to your destination folder.
+14. Open the build folder in the command prompt and run ``mingw32-make.exe``.
+15. Install to target folder by running ``mingw32-make install``.
+16. Your libs will be in the lib folder, the dlls will in the bin folder. Copy the *.lib and *.dll files to your destination folder.
 
 
 Notes regarding OpenBLAS 
 ------------------------
-The supplied OpenBLAS distribution was obtained from OpenBLAS `sourceforge site <https://sourceforge.net/projects/openblas/files/>`_. The supplied version is `0.2.14 Win64 int32 <http://sourceforge.net/projects/openblas/files/v0.2.14/OpenBLAS-v0.2.14-Win64-int32.zip/download>`_. This version uses 32-bit integers as BLASINT type which is needed for compatibility with the reference LAPACK build.
+The supplied OpenBLAS distribution was obtained from OpenBLAS `sourceforge site <https://sourceforge.net/projects/openblas/files/>`_. The supplied version is `0.2.15 Win64 int32 <http://sourceforge.net/projects/openblas/files/v0.2.15/OpenBLAS-v0.2.15-Win64-int32.zip/download>`_. This version uses 32-bit integers as BLASINT type which is needed for compatibility with the reference LAPACK build.
+
+The OpenBLAS distribution contains an import library named ``libopenblas.dll.a`` - I copied this to ``libopenblas.lib``. 
+
