@@ -74,7 +74,7 @@ I used Visual Studio 2015. Make sure that the bin folder of MinGW and ``cmake`` 
 7. Click "Specify native compilers" and indicate the path to the Mingw compilers. On my machine, it was ``C:\mingw-w64\mingw64\bin\gfortran.exe``
 8. Set the ``BUILD_SHARED_LIBS`` option to ON.
 9. Set the ``CMAKE_GNUtoMS`` option to ON.
-10. I also switched off options to build complex functions and the tests.
+10. I also switched off options to build complex functions and the tests; set CBLAS on.
 11. Click again configure - everything will becomes white
 12. Click generate; this will create the mingw build.
 13. Close `cmake-gui`.
