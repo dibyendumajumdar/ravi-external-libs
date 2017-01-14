@@ -82,10 +82,17 @@ I used Visual Studio 2015. Make sure that the bin folder of MinGW and ``cmake`` 
 15. Install to target folder by running ``mingw32-make install``.
 16. Your libs will be in the lib folder, the dlls will in the bin folder. Copy the *.lib and *.dll files to your destination folder.
 
+LAPACK Version
+--------------
+Version of LAPACK built was 3.6.1.
+
 
 Notes regarding OpenBLAS 
 ------------------------
-The supplied OpenBLAS distribution was obtained from OpenBLAS `sourceforge site <https://sourceforge.net/projects/openblas/files/>`_. The supplied version is `0.2.15 Win64 int32 <http://sourceforge.net/projects/openblas/files/v0.2.15/OpenBLAS-v0.2.15-Win64-int32.zip/download>`_. This version uses 32-bit integers as BLASINT type which is needed for compatibility with the reference LAPACK build.
+The supplied OpenBLAS distribution was obtained from OpenBLAS `sourceforge site <https://sourceforge.net/projects/openblas/files/>`_. The supplied version is `0.2.19 Win64 int32 <https://sourceforge.net/projects/openblas/files/v0.2.19/OpenBLAS-v0.2.19-Win64-int32.zip/download>`_. This version uses 32-bit integers as BLASINT type which is needed for compatibility with the reference LAPACK build.
 
 The OpenBLAS distribution contains an import library named ``libopenblas.dll.a`` - I copied this to ``libopenblas.lib``. 
 
+gcc version
+-----------
+gcc 6.2.0 was used to build LAPACK, and the included dlls are of that version.
