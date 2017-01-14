@@ -29,7 +29,7 @@
 #define OPENBLAS_CLOCAL_BUFFER_SIZE 65536
 #define OPENBLAS_ZLOCAL_BUFFER_SIZE 32768
 #define OPENBLAS_GEMM_MULTITHREAD_THRESHOLD 4
-#define OPENBLAS_VERSION " OpenBLAS 0.2.14 "
+#define OPENBLAS_VERSION " OpenBLAS 0.2.19 "
 /*This is only for "make install" target.*/
 
 #if defined(OPENBLAS_OS_WINNT) || defined(OPENBLAS_OS_CYGWIN_NT) || defined(OPENBLAS_OS_INTERIX)
@@ -90,8 +90,8 @@ typedef int blasint;
 /* C99 supports complex floating numbers natively, which GCC also offers as an
    extension since version 3.0.  If neither are available, use a compatible
    structure as fallback (see Clause 6.2.5.13 of the C99 standard). */
-#if (defined(__STDC_IEC_559_COMPLEX__) || __STDC_VERSION__ >= 199901L || \
-     (__GNUC__ >= 3 && !defined(__cplusplus)))
+#if ((defined(__STDC_IEC_559_COMPLEX__) || __STDC_VERSION__ >= 199901L || \
+      (__GNUC__ >= 3 && !defined(__cplusplus))) && !(defined(FORCE_OPENBLAS_COMPLEX_STRUCT)))
   #define OPENBLAS_COMPLEX_C99
 #ifndef __cplusplus
   #include <complex.h>
