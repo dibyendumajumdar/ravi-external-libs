@@ -6,8 +6,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 if (WIN32)
   install(DIRECTORY include/win64/openblas/
         DESTINATION include/openblas)
-  install(DIRECTORY include/win64/gsl/
-        DESTINATION include/gsl)  
   install(DIRECTORY bin/win64/
         DESTINATION bin)
   install(DIRECTORY lib/win64/
