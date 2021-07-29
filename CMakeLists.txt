@@ -8,6 +8,8 @@ if (WIN32)
         DESTINATION include/openblas)
   install(DIRECTORY include/win64/openssl/
         DESTINATION include/openssl)
+  install(DIRECTORY include/win64/libuv/
+        DESTINATION include/libuv)
   install(DIRECTORY bin/win64/
         DESTINATION bin)
   install(DIRECTORY lib/win64/
